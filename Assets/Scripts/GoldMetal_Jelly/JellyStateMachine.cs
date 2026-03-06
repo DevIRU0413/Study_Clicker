@@ -13,7 +13,7 @@ namespace GoldMetal_Jelly
     {
         private IJellyState _idleState;
         private IJellyState _walkState;
-
+        
         [SerializeField]private IJellyState _currentState = null;
 
         public JellyStateType OldStateType { get; private set; } = JellyStateType.None;
@@ -35,9 +35,6 @@ namespace GoldMetal_Jelly
 
         private void Awake()
         {
-            GameObject mo = GameObject.Find("GameManager");
-            Manager = mo?.GetComponent<GameManager>();
-            
             Animator = GetComponent<Animator>();
             SpriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -49,6 +46,8 @@ namespace GoldMetal_Jelly
 
         void Start()
         {
+            Manager = GameManager.Instance;
+
             SwitchState(JellyStateType.Idle);
         }
 
